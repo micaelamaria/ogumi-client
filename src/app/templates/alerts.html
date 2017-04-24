@@ -1,0 +1,6 @@
+<div ng-controller="AlertCtrl" id="alerts">
+  <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">
+    <strong> {{alert.head}} </strong>
+    <span ng-bind-html=alert.info></span>
+  </alert>
+</div>

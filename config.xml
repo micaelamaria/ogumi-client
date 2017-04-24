@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.naymspace.ogumi.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Ogumi</name>
+    <description>
+        The Ogumi App.
+    </description>
+    <author email="fiona.schmidtke@naymspace.de" href="http://www.naymspace.de">
+        Naymspace
+    </author>
+    <icon src="src/icon.png" />
+    <content src="index.html" />
+    <access origin="*" />
+    <plugins>
+      <plugin name="com.ququplay.websocket.websocket" version="0.1.0" />
+      <plugin name="ZeroConf" value="com.phonegap.plugins.zeroconf.ZeroConf"/>
+      <plugin name="cordova-plugin-network-information" version="0.2.15" />
+      <plugin name="cordova-plugin-crosswalk-webview" version="1.2.0" />
+      <plugin name="cordova-plugin-whitelist" version="r1.1.0" />
+    </plugins>
+    <feature name="http://api.phonegap.com/1.0/network" />
+    <feature name="NetworkStatus">
+      <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
+    </feature>
+</widget>

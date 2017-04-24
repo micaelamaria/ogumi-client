@@ -1,0 +1,22 @@
+node_modules/
+bower_components/
+.sass-cache/
+.tmp/
+dist/
+deploy/
+coverage/
+
+#Cordova
+www/
+www-example/
+plugins/
+platforms/
+hooks/
+
+#Config files
+tomcat.json
+artifactory.json
+
+#Temp files
+*~
+*.swp

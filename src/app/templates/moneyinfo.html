@@ -1,0 +1,9 @@
+<h1>{{session.currentStep.resource.name}}</h1>
+<form ng-submit="nextStep()">
+  <p translate="messages.currentmoneysum" translate-values="{amount: session.player.money.toFixed(2), current: profit.toFixed(2)}">
+    Here should be displayed your money you have won until now.
+  </p>
+  <button type="submit" class="btn btn-primary" translate="actions.ok">
+    OK
+  </button>
+</form>

@@ -1,0 +1,60 @@
+<nav role="navigation" class="navbar navbar-default navbar-fixed-top" ng-controller="NavCtrl">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li class="dropdown" dropdown>
+        <a href="#" class="dropdown-toggle" dropdown-toggle data-toggle="dropdown" role="button" aria-expanded="false">
+          <i class="glyphicon glyphicon-flag"></i> <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+          <li ng-repeat="lang in availableLanguages" >
+            <a href="" ng-click="switchLang(lang)">{{lang}}</a>
+          </li>
+        </ul>
+      </li>
+      <li><a href="#/sessions" class="navbar-brand">Ogumi</a> </li>
+      <li>
+        <a href="#/login" ng-show="!isUserLoggedIn()" translate>elements.login</a>
+        <a href="#/logout" ng-show="isUserLoggedIn()" ng-click="logout()" translate>elements.logout</a>
+      </li>
+      <li class="dropdown pull-right" dropdown>
+        <a href="#" ng-click="open('lg')">
+          <i class="glyphicon glyphicon-info-sign"></i>
+        </a>
+        <script type="text/ng-template" id="infoModal.html">
+          <div class="modal-header">
+              <h3 class="modal-title" translate>elements.about</h3>
+          </div>
+          <div class="modal-body" id="info-modal">
+            <dl class="dl-horizontal bg-info">
+              <dt translate>elements.username</dt>
+              <dd ng-if="username">{{username}}</dd>
+              <dd ng-if="!username">NONE</dd>
+            </dl>
+            <dl class="dl-horizontal">
+              <dt></dt>
+              <dd>
+                <button class="btn btn-link" ng-click="isCollapsed = !isCollapsed"><span translate>elements.enhanced</span></button>
+              </dd>
+            </dl>
+            <dl class="dl-horizontal" collapse="isCollapsed">
+              <dt translate>elements.version</dt>
+              <dd>{{version}}</dd>
+              <dt translate>elements.license</dt>
+              <dd>Apache-2.0</dd>
+              <dt translate>elements.sourcecode</dt>
+              <dd><a href="http://code.ogumi.de/app" rel="external" target="_system">code.ogumi.de/app</a></dd>
+              <dt translate>elements.server</dt>
+              <dd>{{server}}</dd>
+            </dl>
+          </div>
+          <div class="modal-footer">
+              <button class="btn btn-primary" type="button" ng-click="cancel()" translate>actions.close</button>
+          </div>
+        </script>
+      </li>
+      <li class="pull-right">
+        <a href="" ng-click="reload()"><i class="glyphicon glyphicon-refresh"></i></a>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,5 @@
+{
+	"url": "http://hansolo.naymspace.de:9010/manager/text/deploy?path=/webclient&update=true",
+	"user": "deployer",
+	"password": "****"
+}

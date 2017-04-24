@@ -1,0 +1,13 @@
+<h1>{{session.step.name}}</h1>
+<form ng-submit="postStep(session.step.fields)" name="questionnaireForm">
+  <div class="form-group" ng-repeat="field in session.step.fields">
+    <label>{{field.question}}</label>
+    <input class="form-control" type="text" ng-model="field.answer" name="{{field.id}}" pattern="{{field.pattern}}" required/>
+    <div ng-show="questionnaireForm.$submitted || questionnaireForm[field.id].$touched">
+      <span class="text-danger" ng-show="questionnaireForm[field.id].$error.pattern" translate="errors.pattern"></span>
+    </div>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary btn-block" translate>actions.send</button>
+  </div>
+</form>

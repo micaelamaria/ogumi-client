@@ -1,0 +1,88 @@
+<div id="choose-session-page" class='jumbotron vertical-center'>
+  <div class='container'>
+    <div ng-include="'app/templates/alerts.html'"></div>
+    <div id="sessionstep-page" class='jumbotron vertical-center'>
+      <div class="full-width">
+        <div class='row'>
+          <div class="content col-md-6 col-md-offset-3">
+            <h1 ng-show="!isDone">{{ session.currentStep.resource.name }}</h1>
+            <span class="pagecounter pull-right" ng-show="!isDone && !waitForFellow">{{ pagefun() }}</span>
+            <form ng-show="!isDone && !waitForFellow">
+              <div ng-repeat="field in session.currentStep.resource.fields track by $index">
+                <div class="form-group" ng-show=" showfun($index) ">
+                  <table class="table incentivizedtask-table">
+                    <caption>{{ field.question }}</caption>
+                    <thead>
+                    <tr>
+                      <th></th>
+                      <th translate="actions.choose">Choose</th>
+                      <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                      <td>
+                        <button type="button" class="btn btn-default" id="incentivizedTask-a" ng-click="addAnswer(field, 'A')" ng-class="{clicked: field.answer==='A'}">
+                          <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                              <th translate="elements.you">You</th>
+                              <th translate="elements.incentivizedtask_fellow">Other</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                              <td translate="elements.money" translate-values="{amount: field.aActive.toFixed(2)}"></td>
+                              <td translate="elements.money" translate-values="{amount: field.aPassive.toFixed(2)}"></td>
+                            </tr>
+                            </tbody>
+                          </table>
+                        </button>
+                      </td>
+                      <td></td>
+                      <td>
+                        <button type="button" class="btn btn-default" id="incentivizedTask-b" ng-click="addAnswer(field, 'B')" ng-class="{clicked: field.answer==='B'}">
+                          <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                              <th translate="elements.you">You</th>
+                              <th translate="elements.incentivizedtask_fellow">Other</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                              <td translate="elements.money" translate-values="{amount: field.bActive.toFixed(2)}"></td>
+                              <td translate="elements.money" translate-values="{amount: field.bPassive.toFixed(2)}"></td>
+                            </tr>
+                            </tbody>
+                          </table>
+                        </button>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <button type="button" class="btn btn-primary pull-right"
+                          ng-if="session.step.randomized"
+                          ng-click="nextPage()"
+                          ng-disabled="!isBeforeNextPage()"
+                          translate="actions.next">
+                    Next
+                  </button>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary pull-right"
+                      ng-if="!session.step.randomized"
+                      ng-disabled="session.step.nextDisabled"
+                      ng-click="nextPage()"
+                      translate="actions.next">
+                Next
+              </button>
+            </form>
+            <div ng-include="'app/templates/waitforfellow.html'" ng-show="waitForFellow && !isDone"></div>
+            <div ng-include="'app/templates/moneyinfo.html'" ng-show="isDone"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

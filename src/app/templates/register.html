@@ -1,0 +1,66 @@
+<div id="register-page" class='jumbotron vertical-center'>
+  <div class='container'>
+    <div class='row'>
+      <div class="col-md-6 col-md-offset-3">
+        <div ng-include="'app/templates/alerts.html'"></div>
+        <form ng-submit="register(user)" name="registerForm">
+          <h1 translate="elements.register">Register</h1>
+          <p  translate>texts.register</p>
+
+          <div class="form-group">
+            <label for="loginserver" translate>elements.server</label>
+            <span class="label label-success" ng-if="serverIsReachable">OGUMI-Server (version {{ serverInfo.version }})</span>
+            <span class="label label-danger" ng-if="!serverIsReachable" translate>messages.server_not_reachable</span>
+            <uib-tabset>
+              <uib-tab heading="Serverlist" select="setServerFromSelection()">
+                <select id="loginserver"
+                        class="form-control"
+                        ng-model="serverSelection.selectedServer"
+                        name="server"
+                        ng-options="entry as entry.name for entry in server track by entry.url" ng-show="server.length > 0">
+                </select>
+              </uib-tab>
+              <uib-tab heading="Manual" select="setServerFromInput()">
+                <input type="text" class="form-control" placeholder="http://example.com/ogumi-model"  ng-model="serverSelection.userDefinedServer.url"/>
+              </uib-tab>
+            </uib-tabset>
+          </div>
+
+          <div class="form-group">
+            <label for="username" translate="elements.username">Username</label>
+            <input type="text" class="form-control" placeholder="Username" id="username" name="username" ng-model="user.username" required/>
+            <div ng-show="registerForm.$submitted || registerForm.username.$touched">
+              <span class="text-danger" ng-show="registerForm.username.$error.required" translate="errors.required">required</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password" translate="elements.password">Password</label>
+            <input type="password" class="form-control" placeholder="Password" id="password" name="password" ng-model="user.password" equals="{{user.confirm_password}}" required/>
+            <div ng-show="registerForm.$submitted || registerForm.password.$touched">
+              <span class="text-danger" ng-show="registerForm.password.$error.required" translate="errors.required">required</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password2" translate="elements.password_again">Password (again)</label>
+            <input type="password" class="form-control" placeholder="Password" id="password2" name="password2" ng-model="user.confirm_password" equals="{{user.password}}" required/>
+            <div ng-show="registerForm.$submitted || registerForm.password2.$touched">
+              <span class="text-danger" ng-show="registerForm.password2.$error.required" translate="errors.required">required</span>
+              <span class="text-danger" ng-show="registerForm.password2.$error.equals" translate="errors.password">passwords do not match</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email" translate="elements.email">Email</label>
+            <span class="help-block" translate="messages.helpemail">help</span>
+            <input type="email" class="form-control" placeholder="mail@example.com" id="email" name="email" ng-model="user.email"/>
+            <div ng-show="registerForm.$submitted || registerForm.email.$touched">
+              <span class="text-danger" ng-show="registerForm.email.$error.email" translate="errors.email">invalid email</span>
+            </div>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block" translate="elements.register" ng-disabled="registerForm.$invalid">Register</button><br/>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

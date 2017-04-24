@@ -1,0 +1,16 @@
+<h1>{{session.step.name}}</h1>
+<div id="waiting-loading" ng-class="{loading: session.step.loading}" ng-show="session.step.loading">
+  <p translate>messages.loading</p>
+</div>
+<div id="waiting-active" ng-show="!session.step.loading">
+  <p ng-show="!session.step.stopped" translate="messages.active_waiting" translate-values="{endDate: session.step.endDate.format('LLLL')}">Please wait until the next step starts.</p>
+  <p ng-show="session.step.stopped" translate="messages.ended_waiting">The next step has started.</p>
+  <br/>
+  <form ng-submit="postStep()">
+    <button type="submit" class="btn btn-primary"
+     ng-disabled="!session.step.stopped"
+     translate="actions.next">
+      Next
+    </button>
+  </form>
+</div>

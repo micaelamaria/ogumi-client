@@ -1,0 +1,45 @@
+<div id="login-page" class="jumbotron vertical-center">
+  <div class="container">
+    <div class='row'>
+      <div class="col-md-6 col-md-offset-3">
+        <form ng-submit="login(user)">
+          <div ng-include="'app/templates/alerts.html'"></div>
+          <h1 translate>elements.login</h1>
+          <p translate>texts.login</p>
+
+          <div class="form-group">
+            <label for="loginserver" translate>elements.server</label>
+            <span class="label label-success" ng-if="serverIsReachable">OGUMI-Server (version {{ serverInfo.version }})</span>
+            <span class="label label-danger" ng-if="!serverIsReachable" translate>messages.server_not_reachable</span>
+            <uib-tabset>
+              <uib-tab heading="Serverlist" select="setServerFromSelection()">
+                <select id="loginserver"
+                        class="form-control"
+                        ng-model="serverSelection.selectedServer"
+                        name="server"
+                        ng-options="entry as entry.name for entry in server track by entry.url" ng-show="server.length > 0">
+                </select>
+              </uib-tab>
+              <uib-tab heading="Manual" select="setServerFromInput()">
+                <input type="text" class="form-control" placeholder="http://example.com/ogumi-model"  ng-model="serverSelection.userDefinedServer.url"/>
+              </uib-tab>
+            </uib-tabset>
+          </div>
+
+          <div class="form-group">
+            <label for="username" translate>elements.username</label>
+            <input type="text" class="form-control" placeholder="Username" id="username"  ng-model="user.username" required/>
+          </div>
+          <div class="form-group">
+            <label for="password" translate>elements.password</label>
+            <input type="password" class="form-control" placeholder="Password" id="password" ng-model="user.password" required/>
+          </div>
+          <div class="form-group" role="group">
+            <button type="submit" class="btn btn-primary btn-block" translate>actions.submit</button>
+            <a class="btn btn-default btn-block" href="#/register" translate>elements.register</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

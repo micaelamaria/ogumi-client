@@ -1,0 +1,143 @@
+/*
+ * Copyright (c) 2015 naymspace software (Dennis Nissen)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+div#sessionstep-page .maxpx {
+  max-width: 1000px;
+}
+
+div#sessionstep-page .pagecounter {
+  font-size: 1.5em;
+}
+
+.container .jumbotron {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.full-width {
+  width: 100%;
+}
+
+table.incentivizedtask-table {
+  margin-bottom: 50px;
+  th, td {
+    text-align: center;
+  }
+  table {
+    border-radius: 3px;
+    margin-bottom: 0;
+  }
+  button {
+    &:hover {
+      background-color: #FFF;
+      border-color: #CCC;
+    }
+    &.clicked {
+      background-color: #E6E6E6;
+      border: 2px solid #2A8D2A;
+    }
+  }
+}
+
+#sessionChart {
+  max-width: 1000px;
+  height: 300px;
+}
+
+#experiment-page {
+  > div {
+    width: 100%;
+  }
+  &.jumbotron {
+    padding: 0;
+  }
+  .panel {
+    margin-bottom: 10px;
+  }
+  #experiment-active {
+    padding-left: 0;
+    padding-right: 0;
+    .panel-body {
+      padding: 10px;
+    }
+    .panel-heading {
+      padding: 10px;
+    }
+    .col-xs-3, .col-xs-9 {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+    .rangeslider__fill {
+      background: #777777;
+    }
+  }
+  #model-output .panel-body {
+    padding: 0;
+  }
+  #cumulatedValues strong {
+    display: block;
+    font-weight: bold;
+  }
+  #cumulatedValues > div {
+    display: inline-block;
+    float: left;
+    padding: 0;
+  }
+  #experiment-active .col-xs-3 #cumulatedValues > div {
+    width: 100%;
+  }
+  #experiment-active .col-xs-12 #cumulatedValues > div {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+  div.rangeinfo {
+    padding-bottom: 1em;
+  }
+  #user-input.vtable {
+    display: table;
+    width: 100%;
+  }
+  #user-input form.vtrow {
+    display: table-row;
+    height: 100%;
+  }
+  #user-input-button {
+    text-align: center;
+    &.vcell {
+      display: table-cell;
+      float: none;
+      vertical-align: bottom;
+      padding-bottom: 15px;
+      text-align: center;
+    }
+    button {
+      width: 100%;
+      max-width: 550px;
+    }
+  }
+  #user-input-fields {
+    text-align: center;
+    &.add-padding {
+      padding: 15px;
+    }
+    .form-group {
+      max-width: 550px;
+      display: block;
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+}

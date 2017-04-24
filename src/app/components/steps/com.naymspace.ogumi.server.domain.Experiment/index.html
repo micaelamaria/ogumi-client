@@ -1,0 +1,91 @@
+<div id="choose-session-page" class='jumbotron vertical-center'>
+  <div class='container expcontainer'>
+    <div ng-include="'app/templates/alerts.html'"></div>
+      <div class="full-width">
+        <div class='row'>
+            <h1 translate="elements.experiment">Experiment</h1>
+            <div id="experiment-stopped" ng-show="experimentStatus == 'ENDED'">
+              <p translate>messages.ended_experiment</p>
+              <p translate="messages.currentmoneysum" translate-values="{amount: session.player.money.toFixed(2), current: profit.toFixed(2)}">
+                Here should be displayed your money you have won until now.
+              </p>
+              <button class="btn btn-primary" id="next-step" translate="actions.next" ng-click="onClickNext()">
+                Next
+              </button>
+            </div>
+            <div id="experiment-active" ng-show="experimentStatus == 'ACTIVE'" class="container">
+              <div class="row">
+                <div ng-class="{'col-xs-3': isLandscape, 'col-xs-12': !isLandscape, 'pull-right': true}">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h2 class="panel-title" translate="elements.profit">Profit</h2>
+                    </div>
+                    <div class='panel-body'>
+                      <div id="cumulatedValues">
+                        <div>
+                          <p ng-repeat="(key, val) in cumulatedValues">
+                            <strong class="h5">{{experimentTranslation(key.replace('player['+playerId+'].', ''))}}:</strong>
+                            <span class="counter h4">{{val.toFixed(2)}}</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div id="model-output" ng-class="{'col-xs-9': isLandscape, 'col-xs-12': !isLandscape, 'pull-right': true}">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h2 class="panel-title" translate="elements.model_output">Model output</h2>
+                    </div>
+                    <div class='panel-body'>
+                      <div id="chartContainer">
+                        <div id="sessionChart"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div ng-class="{'col-xs-9': isLandscape, 'col-xs-12': !isLandscape}">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h2 class="panel-title" translate="elements.change_input">Change Input</h2>
+                    </div>
+                    <div id="user-input" ng-class="{'panel-body': true, vtable: isLandscape}">
+                      <form ng-class="{row: true, vtrow: isLandscape}" ng-submit="sendUserInput(userInput)" name="userInputForm" id="userInputForm">
+                        <div id="user-input-fields" ng-class="{'add-padding': true}">
+                          <div class="form-group" ng-repeat="input in userInput track by $index">
+                            <label for="input-{{$index}}">{{ experimentTranslation(input.name) }}</label>
+                            <input type="{{input.type}}" class="form-control" id="input-{{$index}}" name="input-{{$index}}"
+                                   min="{{input.min}}" max="{{input.max}}" step="{{input.step}}"
+                                   value="{{input.value}}" ng-model="input.value" required init-slider>
+                            <div class="rangeinfo" ng-show="input.type === 'range'">
+                              <span class="pull-left">0</span>
+                              <span class="pull-right" translate>elements.max</span>
+                            </div>
+                            <div ng-show="userInputForm.$submitted || userInputForm[input-$index].$touched">
+                              <span class="text-danger" ng-show="userInputForm[input-$index].$error.required" translate>errors.required</span>
+                              <span class="text-danger" ng-show="userInputForm[input-$index].$error.min" translate>errors.min</span>
+                              <span class="text-danger" ng-show="userInputForm[input-$index].$error.max" translate>errors.max</span>
+                            </div>
+                          </div>
+                        </div>
+                        <div id="user-input-button" ng-class="{'col-xs-12': true}">
+                          <button type="submit" class="btn btn-primary" id="user-input-submit" translate ng-disabled="disabledSendButton">actions.send</button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="experiment-loading" ng-class="{loading: experimentStatus == 'LOADING'}" ng-show="experimentStatus == 'LOADING'">
+              <p translate>messages.loading_experiment</p>
+            </div>
+            <div id="experiment-inactive" ng-show="experimentStatus == 'PLANNED'">
+              <p translate="messages.not_active_experiment" translate-values="{startDate: session.currentStep.resource.startDate.format('LLLL')}">This experiment is not active. It will start later</p>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>
